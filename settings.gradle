@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Test Task Tinkoff Fintech"
 include ':app'
-include ':data'
 include ':domain'
+include ':data'
