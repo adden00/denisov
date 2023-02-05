@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHost
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.models.FilmItem
 import com.example.testtasktinkofffintech.R
+import com.example.testtasktinkofffintech.common.Constants.FILM_ID_KEY
 import com.example.testtasktinkofffintech.databinding.FragmentPopularBinding
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.collect
 
 class PopularFragment: Fragment() {
@@ -49,8 +53,9 @@ class PopularFragment: Fragment() {
 
     private fun initRecyclerView() {
         adapter = PopularFilmsAdapter(object : PopularFilmsAdapter.Listener {
-            override fun onClick() {
-                requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_homeFragment_to_detailsFragment)
+            override fun onClick(filmItem: FilmItem) {
+                val bundle = bundleOf(FILM_ID_KEY to filmItem.filmId)
+                requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
 
             }
 

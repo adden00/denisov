@@ -29,7 +29,7 @@ class PopularFilmsAdapter(private val listener: Listener): ListAdapter<FilmItem,
         fun setData(item: FilmItem, listener: Listener) {
             val binding = FilmesListItemBinding.bind(view)
             itemView.setOnClickListener {
-                listener.onClick()
+                listener.onClick(item)
             }
             binding.tvName.text = item.nameRu
             binding.tvDescription.text = "${item.genres[0].genre} (${item.year})"
@@ -47,6 +47,6 @@ class PopularFilmsAdapter(private val listener: Listener): ListAdapter<FilmItem,
     }
 
     interface Listener {
-        fun onClick()
+        fun onClick(filmItem: FilmItem)
     }
 }

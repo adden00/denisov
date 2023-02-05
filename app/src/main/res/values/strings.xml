@@ -8,4 +8,7 @@
     <string name="small_film_logo">small film logo</string>
     <string name="dash">-</string>
     <string name="favourite_icon">favourite icon</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
 </resources>
