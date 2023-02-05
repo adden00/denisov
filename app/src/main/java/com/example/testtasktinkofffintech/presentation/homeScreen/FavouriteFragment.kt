@@ -17,7 +17,7 @@ import com.example.testtasktinkofffintech.databinding.FragmentFavouriteBinding
 import com.example.testtasktinkofffintech.presentation.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
-class FavouriteFragment: Fragment() {
+class FavouriteFragment : Fragment() {
     private lateinit var binding: FragmentFavouriteBinding
     private lateinit var adapter: FilmsAdapter
     private val viewModel: HomeViewModel by activityViewModels()
@@ -38,19 +38,25 @@ class FavouriteFragment: Fragment() {
     }
 
     private fun setActopnBarTitle() {
-        (requireActivity() as MainActivity).supportActionBar?.title = requireContext().getString(R.string.favourite_ru)
+        (requireActivity() as MainActivity).supportActionBar?.title =
+            requireContext().getString(R.string.favourite_ru)
     }
 
     private fun initFilmAdapter() {
         adapter = FilmsAdapter(object : FilmsAdapter.Listener {
             override fun onClick(filmItem: FilmItem) {
                 val bundle = bundleOf(Constants.FILM_ID_KEY to filmItem.filmId)
-                requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
+                requireActivity().findNavController(R.id.fragmentContainerView)
+                    .navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
             }
 
             override fun onLongClick(filmItem: FilmItem) {
                 viewModel.removeFavouriteFilm(filmItem.filmId)
-                val messageSnackbar = Snackbar.make(binding.root, getString(R.string.film_deleted), Snackbar.LENGTH_SHORT)
+                val messageSnackbar = Snackbar.make(
+                    binding.root,
+                    getString(R.string.film_deleted),
+                    Snackbar.LENGTH_SHORT
+                )
                 messageSnackbar.setAction(getString(R.string.canceled_ru)) {
                     viewModel.insertFavouriteFilm(filmItem)
                 }
@@ -63,7 +69,7 @@ class FavouriteFragment: Fragment() {
 
     private fun observeFavoriteFilms() {
         lifecycleScope.launchWhenStarted {
-            viewModel.favouriteFilms.collect(){
+            viewModel.favouriteFilms.collect() {
                 adapter.submitList(it)
             }
         }

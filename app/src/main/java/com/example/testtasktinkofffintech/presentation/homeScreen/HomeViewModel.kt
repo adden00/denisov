@@ -18,11 +18,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-        private val getPopularFilmsUseCase: GetPopularFilmsUseCase,
-        private val getFavouriteFilmsUseCase: GetFavouriteFilmsUseCase,
-        private val insertFavouriteFilmUseCase: InsertFavouriteFilmUseCase,
-        private val deleteFavourFilmUseCase: DeleteFavourFilmUseCase
-    ): ViewModel() {
+    private val getPopularFilmsUseCase: GetPopularFilmsUseCase,
+    private val getFavouriteFilmsUseCase: GetFavouriteFilmsUseCase,
+    private val insertFavouriteFilmUseCase: InsertFavouriteFilmUseCase,
+    private val deleteFavourFilmUseCase: DeleteFavourFilmUseCase
+) : ViewModel() {
 
     private val _popularFilmsList = MutableStateFlow(listOf<FilmItem>())
     val popularFilmsList: StateFlow<List<FilmItem>> = _popularFilmsList.asStateFlow()
@@ -54,7 +54,7 @@ class HomeViewModel @Inject constructor(
 
     private fun loadFavouriteFilms() {
         viewModelScope.launch {
-            getFavouriteFilmsUseCase().collect(){
+            getFavouriteFilmsUseCase().collect() {
                 _favouriteFilms.value = it
                 allFavouriteFilms = it
             }

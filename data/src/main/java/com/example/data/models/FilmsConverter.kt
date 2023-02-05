@@ -19,7 +19,6 @@ class FilmsConverter {
     }
 
 
-
     @TypeConverter
     fun fromGenreList(list: List<GenreEntity>): String {
         return Gson().toJson(list)

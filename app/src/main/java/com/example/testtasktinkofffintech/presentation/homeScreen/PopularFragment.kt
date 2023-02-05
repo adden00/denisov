@@ -17,7 +17,7 @@ import com.example.testtasktinkofffintech.databinding.FragmentPopularBinding
 import com.example.testtasktinkofffintech.presentation.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
-class PopularFragment: Fragment() {
+class PopularFragment : Fragment() {
     private lateinit var binding: FragmentPopularBinding
     private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var adapter: FilmsAdapter
@@ -49,7 +49,8 @@ class PopularFragment: Fragment() {
     }
 
     private fun setActionBarTitle() {
-        (requireActivity() as MainActivity).supportActionBar?.title = requireContext().getString(R.string.popular_ru)
+        (requireActivity() as MainActivity).supportActionBar?.title =
+            requireContext().getString(R.string.popular_ru)
     }
 
     private fun observeListItems() {
@@ -58,14 +59,13 @@ class PopularFragment: Fragment() {
                 adapter.submitList(it)
                 if (it.isEmpty()) {
                     binding.noInternetMessage.visibility = View.VISIBLE
-                }
-                else
+                } else
                     binding.noInternetMessage.visibility = View.GONE
             }
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.isLoadingFilms.collect(){
+            viewModel.isLoadingFilms.collect() {
                 binding.isLoading.visibility = if (it) View.VISIBLE else View.GONE
                 binding.swipeToRefresh.isRefreshing = it
             }
@@ -76,23 +76,26 @@ class PopularFragment: Fragment() {
         adapter = FilmsAdapter(object : FilmsAdapter.Listener {
             override fun onClick(filmItem: FilmItem) {
                 val bundle = bundleOf(FILM_ID_KEY to filmItem.filmId)
-                requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
+                requireActivity().findNavController(R.id.fragmentContainerView)
+                    .navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
 
             }
 
             override fun onLongClick(filmItem: FilmItem) {
                 viewModel.insertFavouriteFilm(filmItem)
-                val messageSnackbar = Snackbar.make(binding.root, getString(R.string.film_added_ru), Snackbar.LENGTH_SHORT)
+                val messageSnackbar = Snackbar.make(
+                    binding.root,
+                    getString(R.string.film_added_ru),
+                    Snackbar.LENGTH_SHORT
+                )
                 messageSnackbar.setAction(getString(R.string.canceled_ru)) {
                     viewModel.removeFavouriteFilm(filmItem.filmId)
                 }
                 messageSnackbar.show()
             }
         })
-        binding.filmsListRcView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.filmsListRcView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.filmsListRcView.adapter = adapter
-
-
-
     }
 }

@@ -10,7 +10,10 @@ import com.example.domain.models.FilmItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class FilmsRepositoryImpl (private val networkService: FilmsNetworkService, private val dao: FilmDao): FilmsRepository  {
+class FilmsRepositoryImpl(
+    private val networkService: FilmsNetworkService,
+    private val dao: FilmDao
+) : FilmsRepository {
     override suspend fun loadFilms(): List<FilmItem> {
         return networkService.getFilms().map { it.toDomain() }
     }

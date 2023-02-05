@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
     android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
     android:layout_marginTop="8dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvName"
-            android:singleLine="true"
             style="@style/FilmsListItemHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="72dp"
+            android:singleLine="true"
             android:text="@string/dash"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -36,8 +34,8 @@
             android:layout_width="60dp"
             android:layout_height="94dp"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="0dp"
@@ -49,8 +47,8 @@
                 android:id="@+id/imFilmPicture"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/small_film_logo" />
+                android:contentDescription="@string/small_film_logo"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.cardview.widget.CardView>
 

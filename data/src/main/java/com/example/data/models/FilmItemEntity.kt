@@ -7,23 +7,22 @@ import androidx.room.PrimaryKey
 @Entity
 data class FilmItemEntity(
 
-
-    @PrimaryKey (autoGenerate = false)
-    @ColumnInfo (name = "filmId")
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "filmId")
     val filmId: Int,
 
-    @ColumnInfo (name = "genres")
+    @ColumnInfo(name = "genres")
     val genres: List<GenreEntity> = listOf(),
 
-    @ColumnInfo (name = "nameRu")
+    @ColumnInfo(name = "nameRu")
     val nameRu: String,
 
 
-    @ColumnInfo (name = "posterUrlPreview")
+    @ColumnInfo(name = "posterUrlPreview")
     val posterUrlPreview: String,
 
 
-    @ColumnInfo (name = "year")
+    @ColumnInfo(name = "year")
     val year: String
 )
 

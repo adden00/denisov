@@ -13,7 +13,7 @@ import com.example.testtasktinkofffintech.databinding.FragmentDetailsBinding
 import com.example.testtasktinkofffintech.presentation.MainActivity
 
 
-class DetailsFragment: Fragment() {
+class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
 
     private val viewModel: DetailsViewModel by activityViewModels()
@@ -27,13 +27,13 @@ class DetailsFragment: Fragment() {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setActionBar()
         loadFilmInfo()
         observeFilmItem()
 
     }
-
 
     private fun setActionBar() {
         (requireActivity() as MainActivity).supportActionBar?.hide()
@@ -52,7 +52,7 @@ class DetailsFragment: Fragment() {
 
     private fun observeFilmItem() {
         lifecycleScope.launchWhenStarted {
-            viewModel.filmInfo.collect(){ item ->
+            viewModel.filmInfo.collect() { item ->
                 item?.apply {
                     binding.includedDetailsInfo.tvName.text = this.nameRu
                     binding.includedDetailsInfo.tvDescription.text = this.description

@@ -12,18 +12,18 @@ import com.example.domain.models.FilmItem
 import com.example.testtasktinkofffintech.R
 import com.example.testtasktinkofffintech.databinding.FilmesListItemBinding
 
-class FilmsAdapter(private val listener: Listener): ListAdapter<FilmItem, FilmsAdapter.ItemHolder>(object : DiffUtil.ItemCallback<FilmItem>() {
-    override fun areItemsTheSame(oldItem: FilmItem, newItem: FilmItem): Boolean {
-        return oldItem.filmId == newItem.filmId
-    }
+class FilmsAdapter(private val listener: Listener) :
+    ListAdapter<FilmItem, FilmsAdapter.ItemHolder>(object : DiffUtil.ItemCallback<FilmItem>() {
+        override fun areItemsTheSame(oldItem: FilmItem, newItem: FilmItem): Boolean {
+            return oldItem.filmId == newItem.filmId
+        }
 
-    override fun areContentsTheSame(oldItem: FilmItem, newItem: FilmItem): Boolean {
-        return oldItem == newItem
-    }
+        override fun areContentsTheSame(oldItem: FilmItem, newItem: FilmItem): Boolean {
+            return oldItem == newItem
+        }
+    }) {
 
-}) {
-
-    class ItemHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    class ItemHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         @SuppressLint("SetTextI18n")
         fun setData(item: FilmItem, listener: Listener) {
@@ -31,20 +31,22 @@ class FilmsAdapter(private val listener: Listener): ListAdapter<FilmItem, FilmsA
             itemView.setOnClickListener {
                 listener.onClick(item)
             }
-            itemView.setOnLongClickListener{
+            itemView.setOnLongClickListener {
 
                 listener.onLongClick(item)
                 true
             }
             binding.tvName.text = item.nameRu
             binding.tvDescription.text = "${item.genres[0].genre} (${item.year})"
-            Glide.with(binding.root.context).load(item.posterUrlPreview).centerCrop().into(binding.imFilmPicture)
-            // TODO добавить поле избранное, и показывать звезду. проверка на избранное в юзкейсе
+            Glide.with(binding.root.context).load(item.posterUrlPreview).centerCrop()
+                .into(binding.imFilmPicture)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(LayoutInflater.from(parent.context).inflate(R.layout.filmes_list_item, parent, false))
+        return ItemHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.filmes_list_item, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {

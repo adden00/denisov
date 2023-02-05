@@ -6,7 +6,6 @@
     tools:context=".presentation.splash.SplashFragment"
     android:background="@color/primary_color">
 
-
     <TextView
         style="@style/header_text_style_light"
         android:id="@+id/textView"

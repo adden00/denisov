@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val getFilmInfoUseCase: GetFilmInfoUseCase): ViewModel() {
+class DetailsViewModel @Inject constructor(private val getFilmInfoUseCase: GetFilmInfoUseCase) :
+    ViewModel() {
 
     private val _filmInfo = MutableStateFlow<FilmInfoItem?>(null)
     val filmInfo: StateFlow<FilmInfoItem?> = _filmInfo.asStateFlow()
@@ -29,5 +30,4 @@ class DetailsViewModel @Inject constructor(private val getFilmInfoUseCase: GetFi
             _isLoadingInfo.value = false
         }
     }
-
 }

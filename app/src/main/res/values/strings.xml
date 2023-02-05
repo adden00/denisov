@@ -17,4 +17,10 @@
     <string name="film_deleted">фильм удален из избранного</string>
     <string name="canceled_ru">отменить</string>
     <string name="film_added_ru">фильм добавлен в избранное</string>
+    <string name="film_logo">film logo</string>
+    <string name="film_name">(Film name)</string>
+    <string name="description">(Description)</string>
+    <string name="genre">(Genre)</string>
+    <string name="countries">(Countries)</string>
+    <string name="im_no_connection">im no connection</string>
 </resources>

@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setupMenu()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,20 +35,24 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setNavigation()
+        setToolbar()
+    }
 
 
-        navController =
-            (childFragmentManager.findFragmentById(R.id.menuFragmentContainerView) as NavHost).navController
-        binding.bottomNavigationView.radioGroup.setOnCheckedChangeListener { _, i ->
-
-            setupRadioButtons(i)
-
-
-        }
+    private fun setToolbar() {
         (requireActivity() as MainActivity).supportActionBar?.hide()
         (requireActivity() as MainActivity).setSupportActionBar(requireActivity().findViewById(R.id.startedToolbar))
         (requireActivity() as MainActivity).supportActionBar?.show()
+    }
 
+
+    private fun setNavigation() {
+        navController =
+            (childFragmentManager.findFragmentById(R.id.menuFragmentContainerView) as NavHost).navController
+        binding.bottomNavigationView.radioGroup.setOnCheckedChangeListener { _, i ->
+            setupRadioButtons(i)
+        }
     }
 
 
@@ -63,6 +68,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
@@ -85,16 +91,12 @@ class HomeFragment : Fragment() {
                         }
                         return false
                     }
-
                 })
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-
                 return true
             }
-
         })
     }
-
 }

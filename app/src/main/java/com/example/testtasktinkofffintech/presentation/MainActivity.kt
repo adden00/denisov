@@ -2,9 +2,6 @@ package com.example.testtasktinkofffintech.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.example.testtasktinkofffintech.R
 import com.example.testtasktinkofffintech.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,17 +15,5 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.startedToolbar)
         supportActionBar?.title = ""
         supportActionBar?.hide()
-
-
-
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.home_menu, menu)
-//        return true
-//
-//    }
-
-
-
 }
