@@ -18,13 +18,11 @@ data class FilmInfoItemEntity(
     val description: String,
 
     @ColumnInfo (name = "countries")
-    val countries: List<CountryEntity>,
+    val countries: List<CountryEntity> = listOf(),
 
-    @ColumnInfo (name = "coverUrl")
-    val coverUrl: String?,
 
     @ColumnInfo (name = "genres")
-    val genres: List<GenreEntity>,
+    val genres: List<GenreEntity> = listOf(),
 
     @ColumnInfo (name = "posterUrl")
     val posterUrl: String,

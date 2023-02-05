@@ -1,8 +1,7 @@
 package com.example.testtasktinkofffintech.di
 
 import com.example.domain.FilmsRepository
-import com.example.domain.usecases.GetFilmInfoUseCase
-import com.example.domain.usecases.GetPopularFilmsUseCase
+import com.example.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,4 +16,13 @@ object DomainModule {
 
     @Provides
     fun provideGetFilmInfoUseCase(repository: FilmsRepository) = GetFilmInfoUseCase(repository)
+
+    @Provides
+    fun provideGetFavouriteFilmsUseCase(repository: FilmsRepository) = GetFavouriteFilmsUseCase(repository)
+
+    @Provides
+    fun provideInsertFavouriteFilmUseCase(repository: FilmsRepository) = InsertFavouriteFilmUseCase(repository)
+
+    @Provides
+    fun provideDeleteFavouriteFilmUseCase(repository: FilmsRepository) = DeleteFavourFilmUseCase(repository)
 }

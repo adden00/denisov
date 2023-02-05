@@ -6,7 +6,6 @@ data class FilmInfoItem(
     val nameRu: String,
     val description: String,
     val countries: List<Country>,
-    val coverUrl: String?,
     val genres: List<Genre>,
     val posterUrl: String,
 )

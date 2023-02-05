@@ -13,7 +13,7 @@ data class FilmItemEntity(
     val filmId: Int,
 
     @ColumnInfo (name = "genres")
-    val genres: List<GenreEntity>,
+    val genres: List<GenreEntity> = listOf(),
 
     @ColumnInfo (name = "nameRu")
     val nameRu: String,

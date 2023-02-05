@@ -12,7 +12,7 @@ import com.example.domain.models.FilmItem
 import com.example.testtasktinkofffintech.R
 import com.example.testtasktinkofffintech.databinding.FilmesListItemBinding
 
-class PopularFilmsAdapter(private val listener: Listener): ListAdapter<FilmItem, PopularFilmsAdapter.ItemHolder>(object : DiffUtil.ItemCallback<FilmItem>() {
+class FilmsAdapter(private val listener: Listener): ListAdapter<FilmItem, FilmsAdapter.ItemHolder>(object : DiffUtil.ItemCallback<FilmItem>() {
     override fun areItemsTheSame(oldItem: FilmItem, newItem: FilmItem): Boolean {
         return oldItem.filmId == newItem.filmId
     }
@@ -31,6 +31,11 @@ class PopularFilmsAdapter(private val listener: Listener): ListAdapter<FilmItem,
             itemView.setOnClickListener {
                 listener.onClick(item)
             }
+            itemView.setOnLongClickListener{
+
+                listener.onLongClick(item)
+                true
+            }
             binding.tvName.text = item.nameRu
             binding.tvDescription.text = "${item.genres[0].genre} (${item.year})"
             Glide.with(binding.root.context).load(item.posterUrlPreview).centerCrop().into(binding.imFilmPicture)
@@ -48,5 +53,6 @@ class PopularFilmsAdapter(private val listener: Listener): ListAdapter<FilmItem,
 
     interface Listener {
         fun onClick(filmItem: FilmItem)
+        fun onLongClick(filmItem: FilmItem)
     }
 }

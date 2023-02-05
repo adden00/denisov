@@ -4,12 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.models.FilmItem
+import com.example.testtasktinkofffintech.R
+import com.example.testtasktinkofffintech.common.Constants
 import com.example.testtasktinkofffintech.databinding.FragmentFavouriteBinding
 import com.example.testtasktinkofffintech.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.collect
 
 class FavouriteFragment: Fragment() {
     private lateinit var binding: FragmentFavouriteBinding
+    private lateinit var adapter: FilmsAdapter
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +32,34 @@ class FavouriteFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        initFilmAdapter()
+        observeFavoriteFilms()
     }
+
+    private fun initFilmAdapter() {
+        adapter = FilmsAdapter(object : FilmsAdapter.Listener {
+            override fun onClick(filmItem: FilmItem) {
+                val bundle = bundleOf(Constants.FILM_ID_KEY to filmItem.filmId)
+                requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
+            }
+
+            override fun onLongClick(filmItem: FilmItem) {
+                viewModel.removeFavouriteFilm(filmItem.filmId)
+            }
+
+        })
+        binding.favouriteRcView.adapter = adapter
+        binding.favouriteRcView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+
+    private fun observeFavoriteFilms() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.favouriteFilms.collect(){
+                adapter.submitList(it)
+            }
+        }
+    }
+
+
 }
