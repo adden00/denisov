@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.domain.models.FilmInfoItem
-import com.example.domain.models.FilmItem
-import com.example.testtasktinkofffintech.R
+import com.bumptech.glide.Glide
 import com.example.testtasktinkofffintech.common.Constants.FILM_ID_KEY
 import com.example.testtasktinkofffintech.databinding.FragmentDetailsBinding
-import com.google.gson.Gson
-import kotlinx.coroutines.flow.collect
+
 
 class DetailsFragment: Fragment() {
     private lateinit var binding: FragmentDetailsBinding
@@ -36,6 +33,13 @@ class DetailsFragment: Fragment() {
             viewModel.loadFilmInfo(this)
         }
 
+
+//        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+//        (requireActivity() as MainActivity).supportActionBar?.title = ""
+        // TODO разобраться со стрелкой
+
+
         observeFilmItem()
     }
 
@@ -53,6 +57,7 @@ class DetailsFragment: Fragment() {
                     this.genres.forEach { strBuilder += it.genre + ", " }
                     strBuilder = strBuilder.substring(0 until strBuilder.length - 2) + "."
                     binding.includedDetailsInfo.tvGenre.text = strBuilder
+                    Glide.with(requireContext()).load(this.posterUrl).into(binding.imFilmPoster)
                 }
             }
         }
