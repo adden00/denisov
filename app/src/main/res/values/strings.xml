@@ -5,4 +5,7 @@
     <string name="favourite">favourite</string>
     <string name="popular_ru">Популярные</string>
     <string name="favourite_ru">Избранное</string>
+    <string name="small_film_logo">small film logo</string>
+    <string name="dash">-</string>
+    <string name="favourite_icon">favourite icon</string>
 </resources>

@@ -5,9 +5,9 @@ import com.example.data.models.FilmItemEntity
 import javax.inject.Inject
 
 
-class FilmsApiService @Inject constructor(private val apiClient: FilmApiClient) {
+class FilmsNetworkService @Inject constructor(private val apiClient: FilmApiClient) {
     suspend fun getFilms(): List<FilmItemEntity> {
-        var result: List<FilmItemEntity>? = null
+        var result: ResponseFilmModel? = null
         try {
             result = apiClient.getFilms().body()
         }
@@ -15,6 +15,6 @@ class FilmsApiService @Inject constructor(private val apiClient: FilmApiClient) 
             Log.d( "MyLog", e.toString())
         }
 
-        return result ?: listOf()
+        return result?.films ?: listOf()
     }
 }

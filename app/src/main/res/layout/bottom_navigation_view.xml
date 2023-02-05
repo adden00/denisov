@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
 
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="4dp"
+    app:cardElevation="0dp">
 
 
     <RadioGroup
@@ -18,28 +21,30 @@
         <RadioButton
             android:id="@+id/radioButtonPopular"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="48dp"
-            android:gravity="center"
-            android:text="@string/popular_ru"
-            android:layout_margin="15dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
             android:background="@drawable/bottom_nav_view_buttons_bg"
+            android:button="@color/transparent"
             android:checked="true"
-            android:button="@color/transparent"/>
+            android:gravity="center"
+            android:text="@string/popular_ru" />
 
         <RadioButton
             android:id="@+id/radioButtonFavourite"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="48dp"
-            android:gravity="center"
-            android:text="@string/favourite_ru"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
             android:background="@drawable/bottom_nav_view_buttons_bg"
-            android:layout_marginBottom="15dp"
-            android:button="@color/transparent"/>
-
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="@string/favourite_ru" />
 
 
     </RadioGroup>

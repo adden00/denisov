@@ -1,4 +1,4 @@
-package com.example.testtasktinkofffintech.common
+package com.example.data.models
 
 import com.example.data.models.CountryEntity
 import com.example.data.models.FilmItemEntity
