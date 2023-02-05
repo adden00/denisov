@@ -11,4 +11,10 @@
 
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="search">Search</string>
+    <string name="repeat_ru">Повторить</string>
+    <string name="check_connect_ru">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="film_deleted">фильм удален из избранного</string>
+    <string name="canceled_ru">отменить</string>
+    <string name="film_added_ru">фильм добавлен в избранное</string>
 </resources>

@@ -10,13 +10,13 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.testtasktinkofffintech.common.Constants.FILM_ID_KEY
 import com.example.testtasktinkofffintech.databinding.FragmentDetailsBinding
+import com.example.testtasktinkofffintech.presentation.MainActivity
 
 
 class DetailsFragment: Fragment() {
     private lateinit var binding: FragmentDetailsBinding
-//    private lateinit var filmItem: FilmInfoItem
-    private val viewModel: DetailsViewModel by activityViewModels()
 
+    private val viewModel: DetailsViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -28,19 +28,26 @@ class DetailsFragment: Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setActionBar()
+        loadFilmInfo()
+        observeFilmItem()
+
+    }
+
+
+    private fun setActionBar() {
+        (requireActivity() as MainActivity).supportActionBar?.hide()
+        (requireActivity() as MainActivity).setSupportActionBar(binding.toolbar)
+        (requireActivity() as MainActivity).supportActionBar?.title = ""
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun loadFilmInfo() {
         val filmId = arguments?.getInt(FILM_ID_KEY)
         filmId?.apply {
             viewModel.loadFilmInfo(this)
         }
-
-
-//        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-//        (requireActivity() as MainActivity).supportActionBar?.title = ""
-        // TODO разобраться со стрелкой
-
-
-        observeFilmItem()
     }
 
     private fun observeFilmItem() {
@@ -58,6 +65,7 @@ class DetailsFragment: Fragment() {
                     strBuilder = strBuilder.substring(0 until strBuilder.length - 2) + "."
                     binding.includedDetailsInfo.tvGenre.text = strBuilder
                     Glide.with(requireContext()).load(this.posterUrl).into(binding.imFilmPoster)
+
                 }
             }
         }
@@ -69,15 +77,3 @@ class DetailsFragment: Fragment() {
         }
     }
 }
-
-
-
-//
-//
-//
-//filmItem = Gson().fromJson(arguments?.getString("filmItem"), FilmItem::class.java)
-//binding.includedDetailsInfo.tvName.text = "${filmItem.nameRu} (${filmItem.nameEn?.apply { this }?:""})"
-//binding.includedDetailsInfo.tvDescription.text = "now\nit\ngergergre\nergergr\ngsdgfdsagd\ntwhsth\naqewrgaewsg\nearfhgfdasg\nqearyer\nwertyhewryheryhgwr\n\naerhygeragdsgsag\naersdgyh"
-//var str = ""
-//filmItem.countries.forEach { str += it.country + ", " }
-//binding.includedDetailsInfo.tvCountries.text = str

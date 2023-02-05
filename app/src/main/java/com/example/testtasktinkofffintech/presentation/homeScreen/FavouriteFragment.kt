@@ -14,8 +14,8 @@ import com.example.domain.models.FilmItem
 import com.example.testtasktinkofffintech.R
 import com.example.testtasktinkofffintech.common.Constants
 import com.example.testtasktinkofffintech.databinding.FragmentFavouriteBinding
-import com.example.testtasktinkofffintech.databinding.FragmentHomeBinding
-import kotlinx.coroutines.flow.collect
+import com.example.testtasktinkofffintech.presentation.MainActivity
+import com.google.android.material.snackbar.Snackbar
 
 class FavouriteFragment: Fragment() {
     private lateinit var binding: FragmentFavouriteBinding
@@ -34,6 +34,11 @@ class FavouriteFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initFilmAdapter()
         observeFavoriteFilms()
+        setActopnBarTitle()
+    }
+
+    private fun setActopnBarTitle() {
+        (requireActivity() as MainActivity).supportActionBar?.title = requireContext().getString(R.string.favourite_ru)
     }
 
     private fun initFilmAdapter() {
@@ -45,13 +50,16 @@ class FavouriteFragment: Fragment() {
 
             override fun onLongClick(filmItem: FilmItem) {
                 viewModel.removeFavouriteFilm(filmItem.filmId)
+                val messageSnackbar = Snackbar.make(binding.root, getString(R.string.film_deleted), Snackbar.LENGTH_SHORT)
+                messageSnackbar.setAction(getString(R.string.canceled_ru)) {
+                    viewModel.insertFavouriteFilm(filmItem)
+                }
+                messageSnackbar.show()
             }
-
         })
         binding.favouriteRcView.adapter = adapter
         binding.favouriteRcView.layoutManager = LinearLayoutManager(requireContext())
     }
-
 
     private fun observeFavoriteFilms() {
         lifecycleScope.launchWhenStarted {
@@ -60,6 +68,4 @@ class FavouriteFragment: Fragment() {
             }
         }
     }
-
-
 }
